@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href ="{{ url_for('static', filename = 'css/main.css')}}">
+    <title>Working Model</title>
+{% endblock %}
+</head>
+<body>
+{% block heading %}
+<h1 style="text-align: center; width:100%; background-color:#00bfff; padding:5px 5px 30px 5px;" >Word  Guessing Game </h1>
+{% endblock %}
+
+<h1 style = "color : royalblue">This is the  {% block location %} {% endblock %}page!!!<br></h1>
+
+    {% block quest %}
+    <h1 style="width:100%; background-color:#0992C6; padding:20px 5px 45px 5px;;">
+
+    <i> Questions :
+        {% for i in question -%}
+        {{ i }}
+
+        {%- endfor %}
+    {% endblock %}
+
+    {%  block guess %} <h1>'{{ word }}' was{%  block guesstype %} {% endblock %}guess!!! Enter guess again!!!
+</h1>
+{% endblock %}
+
+
+    {%  block choice %}
+<h1>Choose Your Alphabet from :
+    {% for c in choice -%}
+     {{ c }}{{ ' ' }}
+    {%- endfor %}
+</h1>
+<h1>Enter Your Guess : </h1>
+<form method="POST" action="/">
+    <div class=""form-group">
+    <input style="background-color:#f8f8f8;width:10%;padding: 12px 20px;resize:none;height:20px;box-sizing: border-box;border:2px solid #ccc;border-radius:4px;" type = "text" name = "word" autofocus=true>
+    </div>
+<input class="button" type = "submit" value = "submit">
+</form>
+
+{% endblock %}
+
+</body>
+</html>
