@@ -1,4 +1,5 @@
-<!-- This is the very first page -->
+<!-- If users guesses correct letter from giver set of characteres -->
+
 {% extends "layout.html" %}
 
 {% block title %}
@@ -9,17 +10,17 @@
 {{ super() }}
 {%  endblock %}
 
-{%  block location %} INDEX {% endblock %}
+{%  block location %} Correct Attempt {% endblock %}
 
 
 {% block question %}
 {{ super() }}
 {%  endblock %}
 
-{% block guess %}
     {% block guesstype %}
+    Correct Guess
     {% endblock %}
-{% endblock %}
+
 
 {% block choice %}
 {{ super() }}

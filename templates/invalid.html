@@ -1,4 +1,4 @@
-<!-- This is the very first page -->
+<!-- Is user enters the letter which is not in the options set-->
 {% extends "layout.html" %}
 
 {% block title %}
@@ -9,17 +9,17 @@
 {{ super() }}
 {%  endblock %}
 
-{%  block location %} INDEX {% endblock %}
+{%  block location %} Invalid {% endblock %}
 
 
 {% block question %}
 {{ super() }}
 {%  endblock %}
 
-{% block guess %}
     {% block guesstype %}
+    Invalid Guess
     {% endblock %}
-{% endblock %}
+
 
 {% block choice %}
 {{ super() }}
