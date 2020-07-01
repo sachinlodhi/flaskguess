@@ -2,11 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block head %}{% endblock %}
     <meta charset="UTF-8">
     <title>Success</title>
 </head>
 <body>
-<h1> Congratulations !!!! Correct Answer : {{ ans }}</h1>
-<a href="/restart" > Move To Next Question</a>
+<h1 style="font-family: 'Sarabun', sans-serif;"> Congratulations !!!! Correct Answer : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <pre>{{ ans }}</pre>
+    </h1>
+<div align="right">
+<form action="/restart">
+         <button type="submit" autofocus= true >Move to next question</button>
+</form>
+</div>
 </body>
+
+
+
 </html>

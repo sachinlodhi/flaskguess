@@ -20,6 +20,9 @@ def shuffle(word):
     for i in choice:
         if i not in fin_lis:
             fin_lis.append(i)
-    fin_lis.remove(' ')
+    try:
+        fin_lis.remove(' ')
+    except:
+        print('no spaces in guess')
     print(f'Jumbled choicecs are : {fin_lis}')
     return fin_lis

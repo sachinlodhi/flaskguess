@@ -52,21 +52,21 @@ def send():
         else:
 
             if len(usr_input)==0:
-                return render_template('invalid.html', word=usr_input, choice=choices,question=question)
+                return render_template('invalid.html', word=usr_input, choice=choices,question=question,hint=an)
             if usr_input in pre_guess: #if already guessed
-                return render_template('repeat.html',word = usr_input,choice = choices,question=question)
+                return render_template('repeat.html',word = usr_input,choice = choices,question=question,hint=an)
             if usr_input not in choices: # if guessed letter is not in options
-                return render_template('invalid.html',word = usr_input,choice = choices,question=question)
+                return render_template('invalid.html',word = usr_input,choice = choices,question=question,hint=an)
             if usr_input in choices and usr_input not in an:
-                return render_template('wrong.html', word = usr_input,choice = choices,question=question)
+                return render_template('wrong.html', word = usr_input,choice = choices,question=question,hint=an)
             if usr_input in an and usr_input not in pre_guess:
                 pre_guess += usr_input
-                return render_template('correct.html',word = usr_input,choice = choices,question=question)
+                return render_template('correct.html',word = usr_input,choice = choices,question=question,hint=an)
 
         print(f'Pre_Guess :{pre_guess}')
     print(f'Question is before rendering : {question}')
-    return render_template('index.html',question=question,choice=choices)
-
+    return render_template('index.html',question=question,choice=choices,hint=an)
+    #return render_template('sample.html',choice=choices)
 
 
 
@@ -80,17 +80,20 @@ def restart():
     global sentence
     global choices,pre_guess
 
-    question = str(q_list.pop())  # popping the element i.e. the question from the list of question for passing in the form
-    an = str(answer.pop())  # selecting last answer i.e. answer of the first question
-    sentence = gen_sen(question, an)  # this will generate the sentance with right answer
+    try:
+            question = str(q_list.pop())  # popping the element i.e. the question from the list of question for passing in the form
 
-    # print(f'Generated Question : {question}')
-    # print(f'Selected answer words : {an}')
-    # print(f'Sentence with answer : {sentence}')
-    choices = shuffle(an)
-    pre_guess = ''
-    return render_template('index.html', question=question, choice=choices)
+            an = str(answer.pop())  # selecting last answer i.e. answer of the first question
+            sentence = gen_sen(question, an)  # this will generate the sentance with right answer
 
+            # print(f'Generated Question : {question}')
+            # print(f'Selected answer words : {an}')
+            # print(f'Sentence with answer : {sentence}')
+            choices = shuffle(an)
+            pre_guess = ''
+            return render_template('index.html', question=question, choice=choices,hint=an)
+    except:
+        return render_template('complete.html')
 if __name__ == '__main__':
     app.run(threaded=True)
 

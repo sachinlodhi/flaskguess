@@ -2,7 +2,89 @@
 <html lang="en">
 <head>
     {% block head %}
-    <link rel="stylesheet" href ="{{ url_for('static', filename = 'css/main.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Sarabun&display=swap" rel="stylesheet">
+        <style >
+        body{
+            text-align: center;
+
+	margin: 0;
+	font-family: "comic Sans MS",cursive;
+	align-items: center;
+	justify-content: center;
+	background-color: deepskyblue;
+
+
+}
+
+
+        .button {
+  position: relative;
+  background-color: black;
+  border: none;
+  font-size: 28px;
+  color: #FFFFFF;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+            border-radius: 5%;
+
+            margin-top: 8px;
+}
+
+.button:after {
+  content: "";
+  background: #90EE90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+
+
+
+
+        .box001 {
+            align-content: center ;
+            width : 25px;
+            height : 22px;
+            margin-top:auto;
+            margin-bottom: auto;
+            border : 1px solid black;
+            background-color : dodgerblue;
+            display: inline-block;
+            word-wrap: break-word;
+        }
+        .btn{
+	width: 200px;
+	height: 60px;
+	border: 4px solid;
+	color: blue;
+	font-weight: 700;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+        </style>
+
+
     <title>Working Model</title>
 {% endblock %}
 </head>
@@ -11,38 +93,52 @@
 <h1 style="text-align: center; width:100%; background-color:#00bfff; padding:5px 5px 30px 5px;" >Word  Guessing Game </h1>
 {% endblock %}
 
-<h1 style = "color : royalblue">This is the  {% block location %} {% endblock %}page!!!<br></h1>
+<h1 style = "color : royalblue; text-align: center;">  {% block location %} {% endblock %}<br></h1>
 
-    {% block quest %}
+    {% block quest -%}
     <h1 style="width:100%; background-color:#0992C6; padding:20px 5px 45px 5px;;">
 
-    <i> Questions :
+    <pre style="text-align: center; width:100%; font-family: 'Sarabun', sans-serif; background-color:#00bfff; padding:5px 5px 30px 5px;">
         {% for i in question -%}
-        {{ i }}
-
+             {%  if i=="_" -%}
+            <pre class="box001">{{ "" }}</pre>
+                 {%- else -%}
+                 {{ i }}
+        {%- endif %}
         {%- endfor %}
-    {% endblock %}
+    </pre>
+    </h1>
+    {%- endblock %}
 
-    {%  block guess %} <h1>'{{ word }}' was{%  block guesstype %} {% endblock %}guess!!! Enter guess again!!!
+    {%  block guess %} <h1 style="font-family: 'Sarabun', sans-serif;">'{{ word }}' was{%  block guesstype %} {% endblock %}guess!!! Enter guess again!!!
 </h1>
 {% endblock %}
 
 
-    {%  block choice %}
-<h1>Choose Your Alphabet from :
+
+{%  block choice %}
+<h1 style="font-family: 'Sarabun', sans-serif;">Choose Your Alphabet from :
     {% for c in choice -%}
      {{ c }}{{ ' ' }}
     {%- endfor %}
 </h1>
-<h1>Enter Your Guess : </h1>
+<h1 style="font-family: 'Sarabun', sans-serif;">Enter Your Guess : </h1>
 <form method="POST" action="/">
-    <div class=""form-group">
-    <input style="background-color:#f8f8f8;width:10%;padding: 12px 20px;resize:none;height:20px;box-sizing: border-box;border:2px solid #ccc;border-radius:4px;" type = "text" name = "word" autofocus=true>
+    <div class="form-group">
+    <input type="text" name="word" autofocus="true"  style="border:2px solid #456879;
+	border-radius:10px;
+	height: 22px;
+	width: 230px;
+padding: 8px;
+font-size: 20px;" >
+
     </div>
 <input class="button" type = "submit" value = "submit">
 </form>
 
 {% endblock %}
 
+<button  class = "button" type="button" onclick='document.getElementById("demo").innerHTML = "Correct answer is : {{ hint }}"'>Get Help</button>
+<p id="demo" style="font-family: 'Sarabun', sans-serif; font-size: 20px" ></p>
 </body>
 </html>
